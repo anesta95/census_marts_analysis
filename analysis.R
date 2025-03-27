@@ -1,11 +1,29 @@
 library(censusapi)
-
+library(readr)
 
 ### Objects Needed ###
 # API Keys
 con <- file(description = ".api_keys/census.txt", open = "rt", blocking = F)
 CENSUS_API_KEY <- readLines(con, n = 1)
 close(con)
+
+con <- file(description = ".api_keys/fred.txt", open = "rt", blocking = F)
+FRED_API_KEY <- readLines(con, n = 1)
+close(con)
+
+# Vector of the dates of the recessionary periods defined by the NBER from here:
+# https://fred.stlouisfed.org/series/USREC
+recession_dates_df <- get_fred_data("USREC", FRED_API_KEY)
+
+recession_dates <- filter(recession_dates_df, value == 1L) %>% 
+  pull(date)
+
+# Reference Files
+marts_cat_ref <- read_csv(
+  file = "./reference_files/marts_category_codes_reference.csv",
+  col_names = T,
+  col_types = "cc"
+)
 
 census_apis <- listCensusApis()
 
