@@ -47,16 +47,14 @@ marts_total <- getCensus(
 )
 
 # TODO: 
-# 1. Import recession dates from FRED
-# 2. Make a vector of all the MARTS category codes to loop over
-# 3. Retool trailing average function and CSV write out function in 
+# 1. Retool trailing average function and CSV write out function in 
 # `bls_jolts_analysis` and `bls_ces_analysis` scripts to be more modular and
 # copy over functions file to here.
-# 4. Add more modularized data format to README in all three econ_analysis repos
-# 5. Create MoM annualized and 3/6/12? month moving average change line graphs
+# 2. Add more modularized data format to README in all three econ_analysis repos
+# 3. Create MoM annualized and 3/6/12? month moving average change line graphs
 # for each MARTS industry time series line graphs
-# 6. Iteratively save data CSVs and graph PNGs for each MARTS industry
-# 7. Add more comments to all three econ analysis `analysis.R` files
+# 4. Iteratively save data CSVs and graph PNGs for each MARTS industry
+# 5. Add more comments to all three econ analysis `analysis.R` files
 
 
 
