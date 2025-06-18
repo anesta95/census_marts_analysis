@@ -22,9 +22,9 @@ make_metadata_vec <- function(df) {
       detail_val <- uniq_col_val
     }
     
-    detail_val_lower <- str_to_lower(detail_val)
+    detail_val_clean <- str_to_lower(detail_val)
     
-    return(detail_val_lower)
+    return(detail_val_clean)
     
   })
   
@@ -298,8 +298,8 @@ make_ts_line_chart <- function(viz_df, x_col, y_col, rec_avg_line = NULL,
                                viz_title = NULL, viz_subtitle, viz_caption) {
   # TEMPORARY: Creating ad-hoc columns for line size and color
   viz_df <- viz_df %>% 
-    mutate(linewidth = if_else(str_detect(data_transform_text, "Trail"), 2.75, 0.8),
-           color = if_else(str_detect(data_transform_text, "Trail"), "#1f78b4", "#a6cee3"))
+    mutate(linewidth = if_else(str_detect(data_transform_text, "Annualized"), 0.8, 2.75),
+           color = if_else(str_detect(data_transform_text, "Annualized"), "#a6cee3", "#1f78b4"))
   
   # https://www.tidyverse.org/blog/2018/07/ggplot2-tidy-evaluation/
   # Quoting X and Y variables:

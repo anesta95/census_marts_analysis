@@ -77,7 +77,7 @@ marts_total_cur_yoy_mom_momann_df <- marts_total_raw %>%
   mutate(date = base::as.Date(paste0(time, "-01")),
          date_period_text = "Monthly",
          value = as.numeric(cell_value) * 1e6,
-         data_measure_text = "Sales",
+         data_measure_text = "Level",
          geo_entity_type_text = "Nation",
          geo_entity_text = "US",
          seas_adj_text = "Seasonally adjusted") %>% 
@@ -107,7 +107,11 @@ marts_total_cur_yoy_mom_momann_df_list <- marts_total_cur_yoy_mom_momann_df %>%
   filter((date_measure_text == "Year-over-year" & 
             data_transform_text == "Percent change") | 
            (date_measure_text == "Month-over-month" & 
-              data_transform_text == "Percent change;Annualized")) %>% 
+              data_transform_text == "Percent change;Annualized")) %>%
+  group_by(data_element_text, date_measure_text) %>% 
+  make_trail_avg_col(3, T) %>% 
+  ungroup() %>% 
+  filter(str_detect(data_transform_text, "Trail")) %>% 
   group_split(data_element_text, .keep = T)
 
 # Creating list of non-recession averages of all measures in the list of data frames
@@ -123,7 +127,7 @@ marts_total_yoy_recession_avg_list <- map(marts_total_cur_yoy_mom_momann_df_list
                                           function(x) {
                                             y <- x %>% filter(date_measure_text == "Year-over-year")
                                             get_avg_col_val(
-                                              y, recession_dates, value, "exclusive")
+                                              y, recession_dates, value, "inclusive")
                                           })
 # Combining these lists
 marts_total_yoy_avg_list <- map2(
@@ -131,9 +135,40 @@ marts_total_yoy_avg_list <- map2(
   marts_total_yoy_recession_avg_list, ~c(.x, .y))
 
 # Editing data frame list to filter dates to only past two years.
-marts_total_cur_yoy_mom_momann_ts_df_list <- map(marts_total_cur_yoy_mom_momann_df_list, ~filter_recent_dates(.x, 48, "month"))
-  
-  
+marts_total_cur_yoy_mom_momann_ts_df_list <- map(marts_total_cur_yoy_mom_momann_df_list, ~filter_recent_dates(.x, 24, "month"))
+
+# Writing out each data frame that will be visualized in a time series chart
+# to a CSV
+walk(marts_total_cur_yoy_mom_momann_ts_df_list, ~econ_csv_write_out(.x, "./data"))
+
+# Making a list of ggplot line charts from the list of time series data frames
+marts_total_cur_yoy_mom_momann_ts_viz_list <- map2(
+  marts_total_cur_yoy_mom_momann_ts_df_list, 
+  marts_total_yoy_avg_list,
+  function(x, y) {
+    non_rec_avg <- y[1]
+    rec_avg <- y[2]
+    
+    viz_title <- paste(unique(x$data_element_text), "Sales")
+    
+    make_ts_line_chart(
+      viz_df = x,
+      x_col = date,
+      y_col = value,
+      rec_avg_line = rec_avg,
+      non_rec_avg_line = non_rec_avg,
+      y_data_type = "percentage",
+      viz_title = viz_title,
+      viz_subtitle = "<b style=\"color: #a6cee3\">Monthly annualized</b> and <b style = \"color: #1f78b4\">yearly</b> trailing 3 month average",
+      viz_caption = paste("Average lines for data since Jan. '92.",
+                          base_viz_caption)
+    )
+  }
+)  
+
+# Saving list of ggplot line charts to PNGs
+walk(marts_total_cur_yoy_mom_momann_ts_viz_list, ~save_chart(.x, "./charts/"))
+
 # TODO: 
 # Charts to make:
 # 1. Time series line chart of year-over-year change and month-over-month change annualized for every category
