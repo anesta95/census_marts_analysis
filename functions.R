@@ -103,12 +103,15 @@ filter_recent_dates <- function(df, time_amount, time_measure) {
 #### data syntax. Use dplyr functional programming to work inside of packages.
 make_chart_title <- function(viz_df, viz_title) {
   if (is.null(viz_title)) {
-    viz_title <- str_to_title(paste(
-      unique(viz_df$data_element_text),
-      unique(viz_df$data_measure_text)
-    ))
+    viz_title <- str_to_title(
+      paste(
+        unique(viz_df$data_element_text),
+        unique(viz_df$data_measure_text)
+      )
+    )
   } 
-  return(viz_title)
+  viz_title_wrapped <- str_wrap(viz_title, width = 40)
+  return(viz_title_wrapped)
 }
 
 # Function to add 13% of numeric difference in vector of dates to latest date

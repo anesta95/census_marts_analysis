@@ -1,0 +1,26 @@
+date,date_period_text,value,data_element_text,data_measure_text,date_measure_text,data_transform_text,geo_entity_type_text,geo_entity_text,seas_adj_text,viz_type_text
+2025-05-01,Monthly,0.004984934055829042,Grocery Stores,Level,Year-over-year,Percent change;Trail 3,Nation,US,Seasonally adjusted,Time series line
+2025-04-01,Monthly,0.009999005554066631,Grocery Stores,Level,Year-over-year,Percent change;Trail 3,Nation,US,Seasonally adjusted,Time series line
+2025-03-01,Monthly,0.011503259798201512,Grocery Stores,Level,Year-over-year,Percent change;Trail 3,Nation,US,Seasonally adjusted,Time series line
+2025-02-01,Monthly,0.009838034620102428,Grocery Stores,Level,Year-over-year,Percent change;Trail 3,Nation,US,Seasonally adjusted,Time series line
+2025-01-01,Monthly,0.003103649706344284,Grocery Stores,Level,Year-over-year,Percent change;Trail 3,Nation,US,Seasonally adjusted,Time series line
+2024-12-01,Monthly,3.771620349976394e-4,Grocery Stores,Level,Year-over-year,Percent change;Trail 3,Nation,US,Seasonally adjusted,Time series line
+2024-11-01,Monthly,-0.0015340922210918724,Grocery Stores,Level,Year-over-year,Percent change;Trail 3,Nation,US,Seasonally adjusted,Time series line
+2024-10-01,Monthly,-0.0031882883375507673,Grocery Stores,Level,Year-over-year,Percent change;Trail 3,Nation,US,Seasonally adjusted,Time series line
+2024-09-01,Monthly,-0.004055032777079563,Grocery Stores,Level,Year-over-year,Percent change;Trail 3,Nation,US,Seasonally adjusted,Time series line
+2024-08-01,Monthly,-0.007429291228031598,Grocery Stores,Level,Year-over-year,Percent change;Trail 3,Nation,US,Seasonally adjusted,Time series line
+2024-07-01,Monthly,-0.009285421693530674,Grocery Stores,Level,Year-over-year,Percent change;Trail 3,Nation,US,Seasonally adjusted,Time series line
+2024-06-01,Monthly,-0.014200408054343083,Grocery Stores,Level,Year-over-year,Percent change;Trail 3,Nation,US,Seasonally adjusted,Time series line
+2024-05-01,Monthly,-0.019950896715743755,Grocery Stores,Level,Year-over-year,Percent change;Trail 3,Nation,US,Seasonally adjusted,Time series line
+2024-04-01,Monthly,-0.026219413810202246,Grocery Stores,Level,Year-over-year,Percent change;Trail 3,Nation,US,Seasonally adjusted,Time series line
+2024-03-01,Monthly,-0.02857079269550067,Grocery Stores,Level,Year-over-year,Percent change;Trail 3,Nation,US,Seasonally adjusted,Time series line
+2024-02-01,Monthly,-0.029692004850787306,Grocery Stores,Level,Year-over-year,Percent change;Trail 3,Nation,US,Seasonally adjusted,Time series line
+2024-01-01,Monthly,-0.026942557309952504,Grocery Stores,Level,Year-over-year,Percent change;Trail 3,Nation,US,Seasonally adjusted,Time series line
+2023-12-01,Monthly,-0.028159515525389128,Grocery Stores,Level,Year-over-year,Percent change;Trail 3,Nation,US,Seasonally adjusted,Time series line
+2023-11-01,Monthly,-0.02515290961951407,Grocery Stores,Level,Year-over-year,Percent change;Trail 3,Nation,US,Seasonally adjusted,Time series line
+2023-10-01,Monthly,-0.021100389729232154,Grocery Stores,Level,Year-over-year,Percent change;Trail 3,Nation,US,Seasonally adjusted,Time series line
+2023-09-01,Monthly,-0.016735637394931852,Grocery Stores,Level,Year-over-year,Percent change;Trail 3,Nation,US,Seasonally adjusted,Time series line
+2023-08-01,Monthly,-0.016437175923224356,Grocery Stores,Level,Year-over-year,Percent change;Trail 3,Nation,US,Seasonally adjusted,Time series line
+2023-07-01,Monthly,-0.016837252910588425,Grocery Stores,Level,Year-over-year,Percent change;Trail 3,Nation,US,Seasonally adjusted,Time series line
+2023-06-01,Monthly,-0.016147798589321916,Grocery Stores,Level,Year-over-year,Percent change;Trail 3,Nation,US,Seasonally adjusted,Time series line
+2023-05-01,Monthly,-0.01093701546490707,Grocery Stores,Level,Year-over-year,Percent change;Trail 3,Nation,US,Seasonally adjusted,Time series line
