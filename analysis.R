@@ -12,6 +12,15 @@ library(rlang)
 library(scales)
 library(tidyr)
 
+# More info on MARTS here:
+# https://www.census.gov/retail/index.html
+# https://www.census.gov/retail/sales.html
+# https://www.census.gov/retail/marts/about_the_surveys.html
+# https://www.census.gov/retail/marts/how_surveys_are_collected.html
+# https://www.census.gov/retail/marts_faqs.html
+
+# Coverage: Retail and food service companies with one or more establishments that sell merchandise and associated services to final consumers (NAICS Sector 44-45 & Sector 72, subsector 722).
+
 # Importing R file with custom functions
 source("functions.R")
 
@@ -51,6 +60,7 @@ cpi_u_inf_adj_df <- cpi_u_df %>%
   select(date, inf_adj)
 
 # Reference Files
+# NOTE these still use 2017 NAICS codes: https://www.census.gov/naics/?input=44&chart=2017
 marts_cat_ref <- read_csv(
   file = "./reference_files/marts_category_codes_reference.csv",
   col_names = T,
@@ -101,9 +111,10 @@ marts_total_cur_yoy_mom_df <- marts_total_raw %>%
   separate_wider_delim(cols = `date_measure_text-data_transform_text`,
                        delim = "|",
                        names = c("date_measure_text", "data_transform_text")) %>% 
+  rename(industry_code = category_code) %>% 
   select(date, date_period_text, value, data_element_text, data_measure_text, 
          date_measure_text, data_transform_text, geo_entity_type_text,
-         geo_entity_text, seas_adj_text)
+         geo_entity_text, seas_adj_text, industry_code)
 
 # Making list of data frames split by element
 marts_total_yoy_df_list <- marts_total_cur_yoy_mom_df %>% 
@@ -167,12 +178,14 @@ marts_total_cur_yoy_mom_momann_ts_viz_list <- map2(
 walk(marts_total_cur_yoy_mom_momann_ts_viz_list, ~save_chart(.x, "./charts/"))
 
 ## Bar graphs ##
-# month-over-month inflation-adjusted
+# month-over-month inflation-adjusted major categories
 # Making and sorting data frame
 marts_total_mom_df <- marts_total_cur_yoy_mom_df %>% 
-  mutate(viz_type_text = "Bar") %>% 
-  filter(date_measure_text == "Month-over-month", date == max(date)) %>% 
-  arrange(desc(value))
+  filter(date_measure_text == "Month-over-month", 
+         date == max(date),
+         str_detect(data_element_text, "Retail Trade")) %>% 
+  arrange(desc(value)) %>% 
+  mutate(viz_type_text = "Bar")
 
 # Writing out month-over-month changes data frame to CSV
 econ_csv_write_out(marts_total_mom_df, "./data")
@@ -182,28 +195,80 @@ marts_total_mom_bar <- make_pct_chg_bar_chart(
   viz_df = marts_total_mom_df,
   x_col = value,
   y_col = data_element_text,
-  viz_title = "US Retail Sales by Category",
+  viz_title = "Overall US Retail Sales",
   viz_subtitle = "Month-over-month percent change",
   viz_caption = base_viz_caption
 )
 
-# TODO: Filter some of these to only include desired categories
-# Saving ggplot month-over-month change by category bar graph to PNG
 save_chart(marts_total_mom_bar, "./charts/")
 
-# TODO: 
-# Charts to make:
-# 1. Time series line chart of year-over-year change and month-over-month change annualized for every category
-# 2. Time series line chart of month-over-month change and month-over-month trailing 3 month average change for every category
-# 3. Bar chart of year-over-year change for every category
-# 4. Bar chart of month-over-month change for every category
-# Do 3 and 4 need to be trailing 3 month averages?
+# month-over-month inflation-adjusted minor categories
+# Bar chart with the GAFO retail sales category found here: https://www.census.gov/retail/definitions.html & https://csimarket.com/glossary/term_GAFO.html
+# Combined FRED month-over-month series here: https://fred.stlouisfed.org/series/MRTSMPCSM4400CUSN
+# Making and sorting data frame
+marts_gafo_mom_df <- marts_total_cur_yoy_mom_df %>% 
+  filter(date_measure_text == "Month-over-month", 
+         date == max(date),
+         data_element_text %in% c(
+           "General Merchandise Stores",
+           "Department Stores",
+           "Clothing and Clothing Access. Stores",
+           "Furniture and Home Furnishings Stores",
+           "Electronics and Appliance Stores",
+           "Sporting Goods, Hobby, Musical Instrument, and Book Stores",
+           "Miscellaneous Store Retailers"
+         )
+  ) %>% 
+  arrange(desc(value)) %>% 
+  mutate(viz_type_text = "Bar")
 
-### CENSUS API NOTES ###
-# How to list available census apis and get api metdata in a tibble
-# census_apis <- listCensusApis()
-# 
-# marts_variables <- listCensusMetadata(
-#   name = "timeseries/eits/marts",
-#   type = "variables"
-# )
+# Writing out month-over-month changes data frame to CSV
+econ_csv_write_out(marts_gafo_mom_df, "./data")
+
+# Making ggplot of month-over-month change for each category
+marts_gafo_mom_bar <- make_pct_chg_bar_chart(
+  viz_df = marts_gafo_mom_df,
+  x_col = value,
+  y_col = data_element_text,
+  viz_title = "US Retail Sales at GAFO+ Stores",
+  viz_subtitle = "Month-over-month percent change",
+  viz_caption = paste("GAFO+ includes stores that sell merchandise normally sold in department stores plus general merchandise stores\n", base_viz_caption)
+)
+
+save_chart(marts_gafo_mom_bar, "./charts/")
+
+# month-over-month inflation-adjusted minor categories
+# Bar chart with the other 3 digit NAICS categories
+# Making and sorting data frame
+marts_categories_mom_df <- marts_total_cur_yoy_mom_df %>% 
+  filter(date_measure_text == "Month-over-month", 
+         date == max(date),
+         data_element_text %in% c(
+           "Motor Vehicle and Parts Dealers",
+           "Auto and Other Motor Vehicles",
+           "Building Mat. and Garden Equip. and Supplies Dealers",
+           "Food and Beverage Stores",
+           "Grocery Stores",
+           "Health and Personal Care Stores",
+           "Gasoline Stations",
+           "Nonstore Retailers",
+           "Food Services and Drinking Places"
+         )
+  ) %>% 
+  arrange(desc(value)) %>% 
+  mutate(viz_type_text = "Bar")
+
+# Writing out month-over-month changes data frame to CSV
+econ_csv_write_out(marts_categories_mom_df, "./data")
+
+# Making ggplot of month-over-month change for each category
+marts_categories_mom_bar <- make_pct_chg_bar_chart(
+  viz_df = marts_categories_mom_df,
+  x_col = value,
+  y_col = data_element_text,
+  viz_title = "US Retail Sales by Category",
+  viz_subtitle = "Month-over-month percent change for stores by NAICS industry",
+  viz_caption = base_viz_caption
+)
+
+save_chart(marts_categories_mom_bar, "./charts/")

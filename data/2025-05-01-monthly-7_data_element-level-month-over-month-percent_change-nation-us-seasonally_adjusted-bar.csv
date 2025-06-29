@@ -1,0 +1,8 @@
+date,date_period_text,value,data_element_text,data_measure_text,date_measure_text,data_transform_text,geo_entity_type_text,geo_entity_text,seas_adj_text,industry_code,viz_type_text
+2025-05-01,Monthly,0.02808816372166767,Miscellaneous Store Retailers,Level,Month-over-month,Percent change,Nation,US,Seasonally adjusted,453,Bar
+2025-05-01,Monthly,0.012484268405666299,"Sporting Goods, Hobby, Musical Instrument, and Book Stores",Level,Month-over-month,Percent change,Nation,US,Seasonally adjusted,451,Bar
+2025-05-01,Monthly,0.01089061930966384,Furniture and Home Furnishings Stores,Level,Month-over-month,Percent change,Nation,US,Seasonally adjusted,442,Bar
+2025-05-01,Monthly,0.007001884276301773,Clothing and Clothing Access. Stores,Level,Month-over-month,Percent change,Nation,US,Seasonally adjusted,448,Bar
+2025-05-01,Monthly,-7.838319122188686e-5,General Merchandise Stores,Level,Month-over-month,Percent change,Nation,US,Seasonally adjusted,452,Bar
+2025-05-01,Monthly,-0.004513196530916752,Department Stores,Level,Month-over-month,Percent change,Nation,US,Seasonally adjusted,4522,Bar
+2025-05-01,Monthly,-0.006685511187443205,Electronics and Appliance Stores,Level,Month-over-month,Percent change,Nation,US,Seasonally adjusted,443,Bar

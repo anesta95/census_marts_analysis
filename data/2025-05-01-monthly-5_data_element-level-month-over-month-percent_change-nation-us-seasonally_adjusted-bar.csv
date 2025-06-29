@@ -1,0 +1,6 @@
+date,date_period_text,value,data_element_text,data_measure_text,date_measure_text,data_transform_text,geo_entity_type_text,geo_entity_text,seas_adj_text,industry_code,viz_type_text
+2025-05-01,Monthly,-0.002015278600398851,"Retail Trade and Food Services, ex Auto and Gas",Level,Month-over-month,Percent change,Nation,US,Seasonally adjusted,44W72,Bar
+2025-05-01,Monthly,-0.00364082547540745,"Retail Trade and Food Services, ex Auto",Level,Month-over-month,Percent change,Nation,US,Seasonally adjusted,44Y72,Bar
+2025-05-01,Monthly,-0.009083425226376063,"Retail Trade and Food Services, ex Gas",Level,Month-over-month,Percent change,Nation,US,Seasonally adjusted,44Z72,Bar
+2025-05-01,Monthly,-0.009892698435139957,Retail Trade,Level,Month-over-month,Percent change,Nation,US,Seasonally adjusted,44000,Bar
+2025-05-01,Monthly,-0.009894960161142996,Retail Trade and Food Services,Level,Month-over-month,Percent change,Nation,US,Seasonally adjusted,44X72,Bar

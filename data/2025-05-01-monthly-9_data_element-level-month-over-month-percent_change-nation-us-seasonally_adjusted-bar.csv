@@ -1,0 +1,10 @@
+date,date_period_text,value,data_element_text,data_measure_text,date_measure_text,data_transform_text,geo_entity_type_text,geo_entity_text,seas_adj_text,industry_code,viz_type_text
+2025-05-01,Monthly,0.008149526642495797,Nonstore Retailers,Level,Month-over-month,Percent change,Nation,US,Seasonally adjusted,454,Bar
+2025-05-01,Monthly,-0.0019652164382096826,Health and Personal Care Stores,Level,Month-over-month,Percent change,Nation,US,Seasonally adjusted,446,Bar
+2025-05-01,Monthly,-0.007737860065144764,Food and Beverage Stores,Level,Month-over-month,Percent change,Nation,US,Seasonally adjusted,445,Bar
+2025-05-01,Monthly,-0.008362989557518241,Grocery Stores,Level,Month-over-month,Percent change,Nation,US,Seasonally adjusted,4451,Bar
+2025-05-01,Monthly,-0.009909317380607408,Food Services and Drinking Places,Level,Month-over-month,Percent change,Nation,US,Seasonally adjusted,722,Bar
+2025-05-01,Monthly,-0.020620580425899537,Gasoline Stations,Level,Month-over-month,Percent change,Nation,US,Seasonally adjusted,447,Bar
+2025-05-01,Monthly,-0.027568046080505004,Building Mat. and Garden Equip. and Supplies Dealers,Level,Month-over-month,Percent change,Nation,US,Seasonally adjusted,444,Bar
+2025-05-01,Monthly,-0.03572850969095187,Motor Vehicle and Parts Dealers,Level,Month-over-month,Percent change,Nation,US,Seasonally adjusted,441,Bar
+2025-05-01,Monthly,-0.03951805602013414,Auto and Other Motor Vehicles,Level,Month-over-month,Percent change,Nation,US,Seasonally adjusted,441X,Bar
