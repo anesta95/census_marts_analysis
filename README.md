@@ -58,8 +58,12 @@ Data and visualization files will be named in the following order:
 10. `viz_type_text`
 
 #### Examples
-* CSV file: `2025-05-01-monthly-retail_trade-level-year-over-year-percent_change_trail_3-nation-us-seasonally_adjusted-time_series_line.csv`
-* PNG file: `2025-05-01-monthly-retail_trade-level-year-over-year-percent_change_trail_3-nation-us-seasonally_adjusted-time_series_line.png`
+* CSV files: 
+  * `2025-05-01_2023-05-01-monthly-retail_trade-level-year-over-year-percent_change_trail_3-nation-us-seasonally_adjusted-time_series_line.csv`
+  * `2025-05-01-monthly-5_data_element-level-month-over-month-percent_change-nation-us-seasonally_adjusted-bar.csv`
+* PNG files: 
+  * `2025-05-01_2023-05-01-monthly-retail_trade-level-year-over-year-percent_change_trail_3-nation-us-seasonally_adjusted-time_series_line.png`
+  * `2025-05-01-monthly-5_data_element-level-month-over-month-percent_change-nation-us-seasonally_adjusted-bar.png`
 
 Every column in the dataset with the `_text` suffix will be included in the filename, in addition to the `date` column. Data files will also include columns that have further information that is _not_ needed to uniquely identify the data series. Examples of this include the `value` column, variables with the `_code` suffix such as `industry_code`, `fips_code`,`preliminary_code`, as well as `moe`, and `moe_level`, among others. 
 

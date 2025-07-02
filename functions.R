@@ -798,11 +798,22 @@ make_state_scatter <- function(viz_df, x_col, y_col, color_col,
 # Assumes the `df` dataframe has a `dataelement_text` column with the name of 
 # the measure and a `date` column that has an associated date with the data.
 
+# Function to check date range of data series to implement correct file name syntax
+make_file_name_date <- function(date_vec) {
+  if (length(unique(date_vec)) == 1) {
+    data_date <- as.character(max(date_vec, na.rm = T))
+  } else if (length(unique(date_vec)) > 1) {
+    data_date <- paste(max(date_vec, na.rm = T), min(date_vec, na.rm = T), sep = "_")
+  } else {
+    stop("Invalid date column")
+  }
+}
+
 #### TODO: Make sure this function conforms with the econanalyzr syntax
 #### and uses dplyr programming to work inside of package.
 econ_csv_write_out <- function(df, folder) {
   
-  data_date <- as.character(max(df$date, na.rm = T))
+  data_date <- make_file_name_date(df$date)
   
   data_details <- df %>% 
     select(all_of(matches("_text$"))) %>% 
@@ -828,7 +839,7 @@ save_chart <- function(plt, folder) {
   
   plt_df <- plt$data
   
-  data_date <- as.character(max(plt_df$date, na.rm = T))
+  data_date <- make_file_name_date(plt_df$date)
   
   data_details <- plt_df %>% 
     select(all_of(matches("_text$"))) %>% 
